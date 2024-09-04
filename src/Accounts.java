@@ -12,7 +12,7 @@ public class Accounts {
         try {
             BufferedReader input = new BufferedReader(new FileReader("src\\accounts.txt"));
             String line;
-            if (input.readLine() == null) {
+            if ("src\\accounts".isEmpty()) {
                 System.out.println("No previous accounts!");
             }else{
                 while ((line = input.readLine()) != null) {

@@ -13,6 +13,8 @@ public class Main {
             new_account = true;
         }
 
+        obj.nextLine();
+
         Accounts accounts = new Accounts();
         Banking user = new Banking();
 
@@ -23,19 +25,16 @@ public class Main {
                 String phone_number;
                 String id;
 
-                System.out.print("Enter your name : ");
+                System.out.print("Enter your name : \n");
                 name = obj.nextLine();
+                user.setName(name);
 
-
-                System.out.print("Enter your age : ");
+                System.out.print("Enter your age : \n");
                 age = obj.nextLine();
-
+                user.setAge(age);
 
                 System.out.print("Enter your phone number : ");
                 phone_number = obj.nextLine();
-
-                user.setName(name);
-                user.setAge(age);
                 user.setPhone(phone_number);
 
                 id = user.writeAccount(name, age, phone_number);
@@ -55,33 +54,32 @@ public class Main {
         System.out.println("How much money do you have?");
         double money = obj.nextDouble();
         user.setBalance(money);
+
+        repeat = true;
+        while(repeat) {
         System.out.println("What would you like to do?");
         System.out.println("Deposit money (0)");
         System.out.println("Transfer money (1)");
         System.out.println("Withdraw money (2)");
         System.out.println("See your information (3)");
 
-        repeat = true;
-        while(repeat) {
             switch (obj.nextInt()) {
                 case 0:
                     System.out.println("How much money would you like to deposit?");
                     double deposit_money = obj.nextDouble();
                     user.deposit(deposit_money);
-                    accounts.editAccountBalance(user, user.getBalance() + deposit_money);
                     break;
                 case 1:
+                    obj.nextLine();
                     System.out.println("What ID would you like to transfer to and how much money?");
                     String transfer_id = obj.nextLine();
                     double transfer_money = obj.nextDouble();
                     user.transfer(accounts.mapA.get(transfer_id), transfer_money);
-                    accounts.editAccountBalance(user, user.getBalance() - transfer_money);
                     break;
                 case 2:
                     System.out.println("How much money would you like to withdraw?");
                     double withdraw_money = obj.nextDouble();
                     user.withdraw(withdraw_money);
-                    accounts.editAccountBalance(user, user.getBalance() - withdraw_money);
                     break;
                 case 3:
                     System.out.println("Account ID: " + user.getID());

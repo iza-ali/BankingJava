@@ -80,6 +80,7 @@ public class Banking {
             while ((line = input.readLine()) != null) {
                 String[] arr = line.split("/");
                 if(arr[0].equals(id_account)){
+                    this.id_account = arr[0];
                     this.name = arr[1];
                     this.age = arr[2];
                     this.phone = arr[3];
@@ -98,13 +99,13 @@ public class Banking {
         try {
             BufferedReader input = new BufferedReader(new FileReader("src\\accounts.txt"));
             String last = "", line;
-            Integer new_account_number = 1;
+            int new_account_number = 1;
 
             while ((line = input.readLine()) != null) {
                 last = line;
             }
 
-            if(last.compareTo("1") != 0){
+            if(last.compareTo("1") != 0 && !last.isEmpty()){
                 String[] arr = last.split("/");
                 new_account_number = Integer.sum(Integer.parseInt(arr[0]), 1);
             }
